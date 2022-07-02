@@ -1,7 +1,6 @@
 package com.bmm.webpractice.service.jdbc;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +11,13 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.bmm.webpractice.entity.Notice;
 import com.bmm.webpractice.service.NoticeService;
 
+@Service
 public class JDBCNoticeService implements NoticeService{
 	/*
 	 * private String url = "jdbc:oracle:thin:@localhost:1521/xe"; 
@@ -23,13 +26,9 @@ public class JDBCNoticeService implements NoticeService{
 	 * private String driver =
 	 * "oracle.jdbc.driver.OracleDriver";
 	 */
+	@Autowired
 	private DataSource dataSource;
 	
-	
-	
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
 
 	public List<Notice> getList(int page, String field, String query) throws ClassNotFoundException, SQLException{
 		
